@@ -121,3 +121,12 @@ php artithan migrate
 ------------------------------------------
 
 
+git push git@github.com:toda-row/spocale.git master
+
+
+git push -u origin master
+
+
+git add -A
+git commit -m “簡単な説明”
+git push git@github.com:toda-row/spocale.git master
