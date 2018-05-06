@@ -1,0 +1,123 @@
+laravel手順
+
+git@github.com:toda-row/spocale.git
+
+memo
+
+ベース
+PHP7.0
+Mysql5.7
+Laravel5.4~
+
+php -v
+(php5.5)
+
+★先にPHPmyadminを使用
+mysql-ctl cli
+phpmyadmin-ctl install
+https://phpadmin-todarow.c9users.io/phpmyadmin
+https://[title-name]-todarow.c9users.io/phpmyadmin
+
+composer
+
+sudo add-apt-repository ppa:ondrej/php
+
+sudo apt-get update
+
+sudo apt-get install libapache2-mod-php7.0
+
+sudo a2dismod php5
+
+sudo a2enmod php7.0
+
+sudo apt-get install php7.0-dom php7.0-mbstring php7.0-zip php7.0-mysql
+
+php -v
+
+mysql update(つかえない)
+
+https://wpkb.org/install-mysql-5-7-at-cloud9-workspace/
+★最新のダウンロード
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.9-1_all.deb
+
+sudo dpkg -i mysql-apt-config_0.8.9-1_all.deb
+★選択肢1番で5.6を5.7に変更
+sudo apt-get update
+sudo apt-get install mysql-server
+sudo mysql_upgrade -u root -p --force --upgrade-system-tables
+sudo service mysql restart
+
+composer global require "laravel/installer"
+
+
+composer create-project laravel/laravel base
+
+sudo vim /etc/apache2/sites-enabled/001-cloud9.conf
+
+操作 手 順 
+１． [i] キー を 押 し、 入 力 できるモードに 変 更 する 
+２． 「DocumentRoot /home/ubuntu/workspace」 の 箇 所 を 探 す 
+３． 「DocumentRoot /home/ubuntu/workspace/cms/public」 に 変 更 する 
+４． 「esc キー」 → 「:wq」 コマンドでファイルを 保存 し 閉 じる。 
+５． cd cms #cd はチェンジディレクトリ 
+６． sudo composer update #更新 ※ 処 理 が 始 まり 少 し 時 間 がかかります。
+
+※ 修正 中 に 打 ち 間 違 いで 困 ったら 「:q!」 コマンドで 保存 しないで 強 制 終 了。
+
+MySQLを選 択 する 場 合
+
+
+「.env」 ファイル 内 のデータベース 設 定 をアカウントに 合 わせた MySQL 用 に 変 更 します。 DB_HOST=localhost 
+DB_DATABASE=c9 ← cloud9 では DB をすでに 作成 してくれてます。 
+DB_USERNAME=todarow ユーザー 名 ← cloud9 のユーザー 名 
+DB_PASSWORD= ← secret など 記 述 されてるが” 空 ”にする！！
+
+
+==========================================
+先にPHPmyadminをインストールすれば、これはいらないかも
+
+mysql-ctl cli(これで入れない)
+
+または
+mysql -u root
+
+SELECT Host, User FROM mysql.user;
+create user 'todarow'@'localhost' identified by '1234';
+grant all on *.* to 'todarow'@'localhost';
+SELECT Host, User FROM mysql.user;
+
+
+==========================================
+mysql-ctl cli(これで入れる)
+
+show databases;
+use c9;
+show tables;
+exit;
+
+
+php artisan make:auth
+------------------------------------
+
+２． ログイン 認 証 機 能 のデータテーブルを 作成 （artisan コマンド）
+------------------------------------
+php artisan migrate
+
+ここまで
+
+------------------------------------------ 
+
+php artisan migrate
+
+migrate Migration          ファイルを 実 行 
+migrate:install migrations テーブルを 作成 します 
+migrate:refresh            テーブルを 初期 化。 データも 初期 化。 
+migrate:reset              全 ての Migration 操作 を 元 に 戻 す （全 削除） 
+migrate:rollback           一 つ 前 の Migration 操作 した 情 報 に 戻 す 
+migrate:status Migration    ファイルと 実 行状 態 を 確 認 できる 
+
+php artithan migrate
+
+------------------------------------------
+
+
