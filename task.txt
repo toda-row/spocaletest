@@ -1,6 +1,13 @@
+git add -A
+git commit -m “簡単な説明”
+git push git@github.com:toda-row/spocaletest.git master
+
+
 
 修正前
-更新の際に、画像を挿入しないと更新されない
+https://phpadmin-todarow.c9users.io/が崩れる
+SSL化する
+
 ページビュー数を各ページでカウントする
 トップにサイドバーをつけて、ランキング表示
 曜日を表示
@@ -14,6 +21,24 @@
 イベント参加時にフェイスブックの参加者のウォールに投稿
 ファイスブックにイベント作成時にファンページに自動投稿
 
+メール送信
+＊イベント参加時
+＊イベント参加キャンセル時
+＊イベント自体のキャンセル時
+＊問い合わせメール時
+
+新規作成できない
+value="<?= $date->modify('+7 days')->format('Y-m-d\TH:i') ?>"
+
+input type="datetime-local"
+
+<?php
+    $date = new DateTime('now');
+    
+?>
 
 
 修正済み
+更新の際に、画像を挿入しないと更新されない
+
+
