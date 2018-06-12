@@ -27,15 +27,12 @@ SSL化する
 ＊イベント自体のキャンセル時
 ＊問い合わせメール時
 
-新規作成できない
-value="<?= $date->modify('+7 days')->format('Y-m-d\TH:i') ?>"
-
-input type="datetime-local"
-
+編集できない
 <?php
-    $date = new DateTime('now');
-    
+    $beforedate = $event->event_date;
 ?>
+<input type="datetime-local" id="event_date" name="event_date" class="form-control" value="{{$beforedate->format('Y-m-d\TH:i')}}">
+
 
 
 修正済み
